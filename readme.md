@@ -25,6 +25,11 @@ This template is based upon the existing progamming quiz 3 template and project 
 <!-- https://ardalis.com/how-to-embed-youtube-video-in-github-readme-markdown/ -->
 [![Thumbnail for tutorial video](https://img.youtube.com/vi/R8-glh-Twh4/maxresdefault.jpg)](https://www.youtube.com/watch?v=R8-glh-Twh4)
 
+### Local CLion Tutorial
+[![Thumbnail for CLion tutorial video](https://img.youtube.com/vi/T6CG9T7nFaA/maxresdefault.jpg)](https://www.youtube.com/watch?v=T6CG9T7nFaA)
+
+This video is for the project 1 template, but most of the setup steps are the same.
+
 ## Which method should I choose?
 
 Method 1 will have you set up with a working programming environment the quickest, and requires no set up on your computer by using cloud containers. You are limited to using VSCode, however, and there is a limit to the amount of time you can spend programming with it, although you are unlikely to run into it. Still, it enables you to work on your project anywhere and on any device, so long as you have a web browser.
