@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
-project(Quiz3)
+project(Quiz4)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
 #compile flags to match Gradescope test environment
 set(GCC_COVERAGE_COMPILE_FLAGS "-Wall -Werror")
@@ -20,13 +20,13 @@ FetchContent_MakeAvailable(Catch2)
 
 include_directories(src)
 
-add_executable(Tests
-        src/interquartile_range.h
-        test/test.cpp # your test file
-        # add your own header files below
+add_executable(DummyTests
+        src/GatorBST.h
+        src/dummy.cpp
+        test/test.cpp 
         )
         
-target_link_libraries(Tests PRIVATE Catch2::Catch2WithMain) #link catch to test.cpp file
+target_link_libraries(DummyTests PRIVATE Catch2::Catch2WithMain) #link catch to test.cpp file
 # the name here must match that of your testing executable (the one that has test.cpp)
 
 # comment everything below out if you are using CLion
