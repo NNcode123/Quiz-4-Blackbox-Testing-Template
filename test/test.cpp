@@ -13,9 +13,16 @@ GatorBST buildTree(vector<pair<int, string>> Students) {
 	return tree;
 }
 
-bool Traversal(const vector<int>& data, GatorBST& bst) {
-
-	vector<Node*> nodes = bst.TraverseInorder();
+bool Traversal(const vector<int>& data, GatorBST& bst, int type = 0) {
+	/*
+	 0 is in order traversal
+	 1 is for pre-order traversal
+	 2 is for post-order traversal
+	 */
+	vector<Node*> nodes;
+	if (type == 0) nodes = bst.TraverseInorder();
+	else if (type == 1) nodes = bst.TraversePreorder();
+	else if (type == 2)	nodes = bst.TraversePostorder();
 	if (data.size() < nodes.size()) {return false;}
 	int i = 0;
 	for (const auto& elm: data) {
@@ -252,7 +259,7 @@ TEST_CASE("SEARCH_NAME Function") {
 }
 
 TEST_CASE("REMOVE FUNCTION") {
-	SECTION("REMOVE for Node with 2 Sucessor Nodes") {
+	SECTION("REMOVE for Node with 2 and 1 Sucessor Nodes") {
 		vector<pair<int, string>> data = {
 			{15, "a"},
 			{8,  "b"},
@@ -264,7 +271,10 @@ TEST_CASE("REMOVE FUNCTION") {
 			{4,  "h"}
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(bst.Remove(8) == true);
+		for (const auto& [elm, chara] : data) {
+			REQUIRE(bst.Remove(elm) == true);
+		}
+
 
 	};
 
@@ -273,10 +283,12 @@ TEST_CASE("REMOVE FUNCTION") {
 		REQUIRE(bst.Remove(8) == false);
 
 	};
-	SECTION("Remove for Node with 1 Sucessor Nodes") {
+	SECTION("Remove for Node with Only 1 Sucessor Nodes") {
 		vector<pair<int, string>> data = {{1,"apple"}, {2,"beta"}};
 		GatorBST bst = buildTree(data);
-		REQUIRE(bst.Remove(1) == true);
+		for (const auto& [elm, chara] : data) {
+			REQUIRE(bst.Remove(elm) == true);
+		}
 	};
 	SECTION("Remove Returns false when the target UFID is not in list") {
 		vector<pair<int, string>> data = {
@@ -301,6 +313,97 @@ TEST_CASE("REMOVE FUNCTION") {
 	};
 }
 
+
+TEST_CASE("In Order Traversals") {
+
+	SECTION("InOrder traversal for an empty list should return nothing."){
+		GatorBST bst;
+		REQUIRE(Traversal({},bst) == true);
+	};
+	SECTION("InOrder traversal works for a complete list") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(Traversal({4,6,8,10,15,20,24,32},bst) == true);
+
+	};
+
+	SECTION("InOrder traversal works for a Perfect List") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,32,35},bst) == true);
+
+	};
+
+	SECTION("InOrder Traversal works for a Full List") {
+
+			vector<pair<int, string>> data = {
+				{15, "a"},
+				{8,  "b"},
+				{24, "c"},
+				{6,  "d"},
+				{10, "e"},
+				{20, "f"},
+				{32, "g"},
+				{4,  "h"},
+				{7,  "i"},
+				{9,  "j"},
+				{12, "k"},
+				{19, "l"},
+				{21, "m"},
+				{35, "n"},
+                 {36,"o"},
+                 {33,"p"}
+
+			};
+			GatorBST bst = buildTree(data);
+			REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,32,33,35,36},bst) == true);
+
+
+
+
+
+
+	};
+
+	SECTION("InOrder Traversal works for a Degernate List") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{32, "e"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(Traversal({6,8,15,24,32}, bst) == true);
+
+	};
+
+
+}
 
 
 
