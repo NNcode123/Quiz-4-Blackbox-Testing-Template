@@ -13,6 +13,20 @@ GatorBST buildTree(vector<pair<int, string>> Students) {
 	return tree;
 }
 
+bool Traversal(const vector<int>& data, GatorBST& bst) {
+
+	vector<Node*> nodes = bst.TraverseInorder();
+	if (data.size() < nodes.size()) {return false;}
+	int i = 0;
+	for (const auto& elm: data) {
+		if (elm != nodes[i]->ufid) {
+			return false;
+		}
+		++i;
+	}
+	return true;
+
+}
 
 
 
@@ -191,6 +205,104 @@ TEST_CASE("SEARCH_ID Function") {
 	};
 
 }
+
+TEST_CASE("SEARCH_NAME Function") {
+
+	SECTION("Empty Vector Returned for Empty Tree") {
+		GatorBST bst;
+		vector<int> vec{};
+		REQUIRE(bst.SearchName("Fraud") == vec);
+	};
+	SECTION("Empty Vector Returned for Tree that doesn't contain the Name") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{32, "e"}
+		};
+		GatorBST bst = buildTree(data);
+		vector<int> vec{};
+		REQUIRE(bst.SearchName("Fraud") == vec);
+
+	};
+	SECTION("If name is in Tree, Return a vector with proper order") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "Remus"},
+			{24, "c"},
+			{6,  "Remus"},
+			{10, "e"},
+			{20, "Remus"},
+			{32, "g"},
+			{4,  "Remus"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"}
+		};
+		GatorBST bst = buildTree(data);
+		vector<int> vec{4,6,8,20};
+		REQUIRE(bst.SearchName("Remus") == vec);
+	};
+
+
+}
+
+TEST_CASE("REMOVE FUNCTION") {
+	SECTION("REMOVE for Node with 2 Sucessor Nodes") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(bst.Remove(8) == true);
+
+	};
+
+	SECTION("Remove for Empty Tree Does Nothing") {
+		GatorBST bst;
+		REQUIRE(bst.Remove(8) == false);
+
+	};
+	SECTION("Remove for Node with 1 Sucessor Nodes") {
+		vector<pair<int, string>> data = {{1,"apple"}, {2,"beta"}};
+		GatorBST bst = buildTree(data);
+		REQUIRE(bst.Remove(1) == true);
+	};
+	SECTION("Remove Returns false when the target UFID is not in list") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "Remus"},
+			{24, "c"},
+			{6,  "Remus"},
+			{10, "e"},
+			{20, "Remus"},
+			{32, "g"},
+			{4,  "Remus"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(bst.Remove(36) == false);
+
+	};
+}
+
+
+
 
 
 // You are free to write as many tests as you want. Your credit for this
