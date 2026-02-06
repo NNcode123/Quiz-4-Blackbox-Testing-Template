@@ -354,7 +354,7 @@ TEST_CASE("In Order Traversals") {
 			{35, "n"}
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,35},bst) == true);
+		REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,32,35},bst) == true);
 
 	};
 
@@ -380,7 +380,7 @@ TEST_CASE("In Order Traversals") {
 
 			};
 			GatorBST bst = buildTree(data);
-		REQUIRE(Traversal({3,4,5,6,7,8,9,10,12,15,19,20,21,24,35},bst) == true);
+		REQUIRE(Traversal({3,4,5,6,7,8,9,10,12,15,19,20,21,24,32,35},bst) == true);
 
 
 
@@ -512,7 +512,7 @@ TEST_CASE("Post Order Traversals") {
 			{4,  "h"}
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(Traversal({4,6,10,8,24,20,32,15},bst,2) == true);
+		REQUIRE(Traversal({4,6,10,8,20,32,24,15},bst,2) == true);
 
 	};
 
@@ -534,7 +534,7 @@ TEST_CASE("Post Order Traversals") {
 			{35, "n"}
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(Traversal( {4,7,6,10,9,12,8,19,21,19,20,35,32,24,15},bst, 2) == true);
+		REQUIRE(Traversal( {4,7,6,9,12,10,8,19,21,20,35,32,24,15},bst, 2) == true);
 
 	};
 
@@ -560,16 +560,14 @@ TEST_CASE("Post Order Traversals") {
 
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(Traversal({3,5,4,7,6,10,9,12,8,19,20,21,35,32,24,15},bst,2) == true);
-
-
+		REQUIRE(Traversal({3, 5, 4, 7, 6, 9, 12, 10, 8, 19, 21, 20, 35, 32, 24, 15},bst,2) == true);
 
 
 
 
 	};
 
-	SECTION("PostOrder Traversal works for a Degernate List") {
+	SECTION("PostOrder Traversal works for a Degenerate List") {
 		vector<pair<int, string>> data = {
 			{15, "a"},
 			{8,  "b"},
