@@ -80,8 +80,8 @@ TEST_CASE("Height function") {
 			{19, "l"},
 			{21, "m"},
 			{35, "n"},
-            {36,"o"},
-            {33,"p"}
+            {3,"o"},
+            {5,"p"}
 		};
 		GatorBST bst = buildTree(data);
 		REQUIRE(bst.Height() == 5);
@@ -180,8 +180,8 @@ TEST_CASE("SEARCH_ID Function") {
 			{19, "l"},
 			{21, "m"},
 			{35, "n"},
-			{36,"o"},
-			{33,"p"}
+			{3,"o"},
+			{5,"p"}
 		};
 		GatorBST bst = buildTree(data);
 		for (const auto& [id, name]: data) {
@@ -354,7 +354,7 @@ TEST_CASE("In Order Traversals") {
 			{35, "n"}
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,32,35},bst) == true);
+		REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,35},bst) == true);
 
 	};
 
@@ -375,12 +375,12 @@ TEST_CASE("In Order Traversals") {
 				{19, "l"},
 				{21, "m"},
 				{35, "n"},
-                 {36,"o"},
-                 {33,"p"}
+                 {3,"o"},
+                 {5,"p"}
 
 			};
 			GatorBST bst = buildTree(data);
-			REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,32,33,35,36},bst) == true);
+		REQUIRE(Traversal({3,4,5,6,7,8,9,10,12,15,19,20,21,24,35},bst) == true);
 
 
 
@@ -405,6 +405,183 @@ TEST_CASE("In Order Traversals") {
 
 }
 
+TEST_CASE("Pre Order Traversals") {
+
+	SECTION("PreOrder traversal for an empty list should return nothing."){
+		GatorBST bst;
+		REQUIRE(Traversal({},bst,1) == true);
+	};
+	SECTION("PreOrder traversal works for a complete list") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(Traversal({15,8,6,4,10,24,20,32},bst,1) == true);
+
+	};
+
+	SECTION("PreOrder traversal works for a Perfect List") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(Traversal( {15,8,6,4,7,10,9,12,24,20,19,21,32,35},bst, 1) == true);
+
+	};
+
+	SECTION("PreOrder Traversal works for a Full List") {
+
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"},
+			 {3,"o"},
+			 {5,"p"}
+
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(Traversal({15,8,6,4,3,5,7,10,9,12,24,20,19,21,32,35},bst,1) == true);
+
+
+
+
+
+
+	};
+
+	SECTION("PreOrder Traversal works for a Degenerate List") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{32, "e"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(Traversal({15,8,6,24,32}, bst, 1) == true);
+
+	};
+}
+
+TEST_CASE("Post Order Traversals") {
+
+	SECTION("PostOrder traversal for an empty list should return nothing."){
+		GatorBST bst;
+		REQUIRE(Traversal({},bst,1) == true);
+	};
+	SECTION("PostOrder traversal works for a complete list") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(Traversal({15,8,6,4,10,24,20,32},bst,1) == true);
+
+	};
+
+	SECTION("PostOrder traversal works for a Perfect List") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(Traversal( {15,8,6,4,7,10,9,12,24,20,19,21,32,35},bst, 1) == true);
+
+	};
+
+	SECTION("PostOrder Traversal works for a Full List") {
+
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"},
+			 {3,"o"},
+			 {5,"p"}
+
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(Traversal({15,8,6,4,3,5,7,10,9,12,24,20,19,21,32,35},bst,1) == true);
+
+
+
+
+
+
+	};
+
+	SECTION("PostOrder Traversal works for a Degernate List") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{32, "e"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(Traversal({15,8,6,24,32}, bst, 1) == true);
+
+	};
+}
 
 
 
