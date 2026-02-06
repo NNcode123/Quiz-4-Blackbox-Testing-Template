@@ -498,7 +498,7 @@ TEST_CASE("Post Order Traversals") {
 
 	SECTION("PostOrder traversal for an empty list should return nothing."){
 		GatorBST bst;
-		REQUIRE(Traversal({},bst,1) == true);
+		REQUIRE(Traversal({},bst,2) == true);
 	};
 	SECTION("PostOrder traversal works for a complete list") {
 		vector<pair<int, string>> data = {
@@ -512,7 +512,7 @@ TEST_CASE("Post Order Traversals") {
 			{4,  "h"}
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(Traversal({15,8,6,4,10,24,20,32},bst,1) == true);
+		REQUIRE(Traversal({4,6,10,8,24,20,32,15},bst,2) == true);
 
 	};
 
@@ -534,7 +534,7 @@ TEST_CASE("Post Order Traversals") {
 			{35, "n"}
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(Traversal( {15,8,6,4,7,10,9,12,24,20,19,21,32,35},bst, 1) == true);
+		REQUIRE(Traversal( {4,7,6,10,9,12,8,19,21,19,20,35,32,24,15},bst, 2) == true);
 
 	};
 
@@ -560,7 +560,7 @@ TEST_CASE("Post Order Traversals") {
 
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(Traversal({15,8,6,4,3,5,7,10,9,12,24,20,19,21,32,35},bst,1) == true);
+		REQUIRE(Traversal({3,5,4,7,6,10,9,12,8,19,20,21,35,32,24,15},bst,2) == true);
 
 
 
@@ -578,7 +578,7 @@ TEST_CASE("Post Order Traversals") {
 			{32, "e"}
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(Traversal({15,8,6,24,32}, bst, 1) == true);
+		REQUIRE(Traversal({6,8,32,24,15}, bst, 2) == true);
 
 	};
 }
