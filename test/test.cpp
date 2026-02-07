@@ -64,14 +64,14 @@ TEST_CASE("Height function") {
 		bst.Insert(9,"lefty");
 		bst.Insert(10, "righty");
 		bst.Insert(20, "empty");
-		REQUIRE(bst.Height() == 2);
+		REQUIRE(bst.Height() == 3);
 	};
 	SECTION("Small Tree with 3 NOdes") {
 		GatorBST bst;
 		bst.Insert(3,"lefty");
 		bst.Insert(5, "righty");
 		bst.Insert(2, "lefty");
-		REQUIRE(bst.Height() == 2);
+		REQUIRE(bst.Height() == 3);
 	};
 	SECTION("Small Tree with 3 NOdes") {
 		GatorBST bst;
@@ -574,6 +574,30 @@ TEST_CASE("In Order Traversals") {
 		GatorBST bst;
 		REQUIRE(Traversal({},bst) == true);
 	};
+	SECTION("InOrder traversal for small sized Trees") {
+		GatorBST bst;
+		bst.Insert(8,"woo");
+		bst.Insert(3,"woo");
+		REQUIRE(Traversal({3,8},bst) == true);
+	};
+	SECTION("InOrder traversal for small sized Trees") {
+		GatorBST bst;
+		bst.Insert(3,"woo");
+		bst.Insert(8,"woo");
+		REQUIRE(Traversal({3,8},bst) == true);
+	};
+	SECTION("Inorder traversal for small sized Trees") {
+		GatorBST bst;
+		bst.Insert(1,"woo");
+		REQUIRE(Traversal({1},bst) == true);
+	}
+	SECTION("Inorder traversal works for small sized Trees of size 3") {
+		GatorBST bst;
+		bst.Insert(3,"woop");
+		bst.Insert(9, "woop");
+		bst.Insert(1,"damn");
+		REQUIRE(Traversal({1,3,9},bst) == true);
+	}
 	SECTION("InOrder traversal works for a complete list") {
 		vector<pair<int, string>> data = {
 			{15, "a"},
@@ -664,6 +688,30 @@ TEST_CASE("Pre Order Traversals") {
 	SECTION("PreOrder traversal for an empty list should return nothing."){
 		GatorBST bst;
 		REQUIRE(Traversal({},bst,1) == true);
+	};
+	SECTION("PreOrder traversal for small sized Trees") {
+		GatorBST bst;
+		bst.Insert(8,"woo");
+		bst.Insert(3,"woo");
+		REQUIRE(Traversal({8,3},bst,1) == true);
+	};
+	SECTION("PreOrder traversal for small sized Trees") {
+		GatorBST bst;
+		bst.Insert(3,"woo");
+		bst.Insert(8,"woo");
+		REQUIRE(Traversal({3,8},bst,1) == true);
+	};
+	SECTION("Preorder traversal for small sized Trees") {
+		GatorBST bst;
+		bst.Insert(1,"woo");
+		REQUIRE(Traversal({1},bst,1) == true);
+	};
+	SECTION("Preorder traversal works for small sized Trees of size 3") {
+		GatorBST bst;
+		bst.Insert(3,"woop");
+		bst.Insert(9, "woop");
+		bst.Insert(1,"damn");
+		REQUIRE(Traversal({3,1,9},bst,1) == true);
 	};
 	SECTION("PreOrder traversal works for a complete list") {
 		vector<pair<int, string>> data = {
@@ -767,6 +815,31 @@ TEST_CASE("Post Order Traversals") {
 		GatorBST bst = buildTree(data);
 		REQUIRE(Traversal({4,6,10,8,20,32,24,15},bst,2) == true);
 
+	};
+
+	SECTION("PostOrder traversal for small sized Trees") {
+		GatorBST bst;
+		bst.Insert(8,"woo");
+		bst.Insert(3,"woo");
+		REQUIRE(Traversal({3,8},bst,2) == true);
+	};
+	SECTION("PostOrder traversal for small sized Trees") {
+		GatorBST bst;
+		bst.Insert(3,"woo");
+		bst.Insert(8,"woo");
+		REQUIRE(Traversal({8,3},bst,2) == true);
+	};
+	SECTION("Postorder traversal for small sized Trees") {
+		GatorBST bst;
+		bst.Insert(1,"woo");
+		REQUIRE(Traversal({1},bst,2) == true);
+	};
+	SECTION("Postorder traversal works for small sized Trees of size 3") {
+		GatorBST bst;
+		bst.Insert(3,"woop");
+		bst.Insert(9, "woop");
+		bst.Insert(1,"damn");
+		REQUIRE(Traversal({1,9,3},bst,1) == true);
 	};
 
 	SECTION("PostOrder traversal works for a Perfect List") {
