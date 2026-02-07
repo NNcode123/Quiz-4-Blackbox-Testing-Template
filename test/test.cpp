@@ -275,6 +275,7 @@ TEST_CASE("Insertion funtion") {
 	SECTION("Insertion works for Empty Tree Bst") {
 		GatorBST bst;
 		REQUIRE(bst.Insert(89, "That guy!") == true);
+		REQUIRE(Traversal({89}, bst) == true);
 	};
 
 	SECTION("If Insertion is valid, it inserts data into the correct place for degenerate trees") {
@@ -366,8 +367,7 @@ TEST_CASE("Insertion funtion") {
 		};
 		GatorBST bst = buildTree(data);
 		REQUIRE(bst.Insert(67, "BrainRot") == true);
-
-
+		REQUIRE(Traversal({3,4,6,7,8,9,10,12,15,19,20,21,24,32,35,67},bst) == true);
 
 	};
 
@@ -384,6 +384,7 @@ TEST_CASE("Insertion funtion") {
 		};
 		GatorBST bst = buildTree(data);
 		REQUIRE(bst.Insert(67, "BrainRot") == true);
+		REQUIRE(Traversal({4,6,8,10,15,20,24,32,67},bst) == true);
 
 	};
 
