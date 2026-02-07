@@ -173,6 +173,7 @@ TEST_CASE("Insertion funtion") {
 		for (const auto& [elm, val]: data) {
 			REQUIRE(bst.Insert(elm,"YOOOO!") == false);
 		}
+		REQUIRE(Traversal({6,8,15,24,32},bst));
 
 	};
 
@@ -197,6 +198,8 @@ TEST_CASE("Insertion funtion") {
 		for (const auto& [elm, val]: data) {
 			REQUIRE(bst.Insert(elm,"YOOOO!") == false);
 		}
+		REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,32,35},bst) == true);
+
 	};
 
 	SECTION("Duplicate Check  for Full Trees") {
@@ -222,6 +225,7 @@ TEST_CASE("Insertion funtion") {
 		for (const auto& [elm, val]: data) {
 			REQUIRE(bst.Insert(elm,"YOOOO!") == false);
 		}
+		REQUIRE(Traversal({3,4,6,7,8,9,10,12,15,19,20,21,24,32,35},bst) == true);
 
 
 	};
@@ -241,7 +245,7 @@ TEST_CASE("Insertion funtion") {
 		for (const auto& [elm, val]: data) {
 			REQUIRE(bst.Insert(elm,"YOOOO!") == false);
 		}
-
+		REQUIRE(Traversal({4,6,8,10,15,20,24,32},bst) == true);
 	};
 
 
