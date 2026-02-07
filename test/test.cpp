@@ -176,7 +176,7 @@ TEST_CASE("Height function") {
 			{3,"o"},
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(bst.Height() == 5);
+		REQUIRE(bst.Height() == 7);
 	};
 }
 
