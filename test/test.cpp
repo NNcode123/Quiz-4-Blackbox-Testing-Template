@@ -477,6 +477,7 @@ TEST_CASE("REMOVE FUNCTION") {
 		for (const auto& [elm, chara] : data) {
 			REQUIRE(bst.Remove(elm) == true);
 			if (i == 0) {REQUIRE(Traversal({2},bst) == true);}
+			++i;
 		}
 		REQUIRE(Traversal({},bst) == true);
 	};
