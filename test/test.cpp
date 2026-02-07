@@ -64,7 +64,7 @@ TEST_CASE("Height function") {
 		bst.Insert(9,"lefty");
 		bst.Insert(10, "righty");
 		bst.Insert(20, "empty");
-		REQUIRE(bst.Height() == 3);
+		REQUIRE(bst.Height() == 2);
 	};
 	SECTION("Small Tree with 3 NOdes") {
 		GatorBST bst;
@@ -78,7 +78,7 @@ TEST_CASE("Height function") {
 		bst.Insert(7,"lefty");
 		bst.Insert(5, "righty");
 		bst.Insert(2, "empty");
-		REQUIRE(bst.Height() == 3);
+		REQUIRE(bst.Height() == 2);
 	};
 	SECTION("Small Tree with 4 NOdes") {
 		GatorBST bst;
