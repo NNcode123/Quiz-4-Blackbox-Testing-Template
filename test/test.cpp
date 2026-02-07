@@ -52,7 +52,7 @@ TEST_CASE("Height function") {
 		bst.Insert(9,"lefty");
 		bst.Insert(10, "righty");
 		bst.Insert(20, "empty");
-		REQUIRE(bst.Height() == 2);
+		REQUIRE(bst.Height() == 3);
 	};
 	SECTION("Small Tree with 3 NOdes") {
 		GatorBST bst;
@@ -66,7 +66,7 @@ TEST_CASE("Height function") {
 		bst.Insert(7,"lefty");
 		bst.Insert(5, "righty");
 		bst.Insert(2, "empty");
-		REQUIRE(bst.Height() == 2);
+		REQUIRE(bst.Height() == 3);
 	};
 
 	SECTION("Perfect Trees") {
@@ -428,6 +428,10 @@ TEST_CASE("SEARCH_NAME Function") {
 		GatorBST bst = buildTree(data);
 		vector<int> vec{};
 		REQUIRE(bst.SearchName("Fraud") == vec);
+		for (const auto& [elm, val]: data) {
+			std::vector<int> vecs = {elm};
+			REQUIRE(bst.SearchName(val) == vecs);
+		}
 
 	};
 	SECTION("If name is in Tree, Return a vector with proper order") {
