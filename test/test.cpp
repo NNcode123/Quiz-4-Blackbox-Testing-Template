@@ -250,6 +250,34 @@ TEST_CASE("Insertion funtion") {
 
 	};
 
+
+	SECTION("Insertions actually Produce the Intended List") {
+		GatorBST bst;
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"}
+		};
+
+		for (const auto& [elm, chara]: data ) {
+			REQUIRE(bst.Insert(elm,"Whoop!") == true);
+		}
+		REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,32,35},bst) == true);
+
+
+	};
+
 	SECTION("Insertion Works for Full Trees") {
 		vector<pair<int, string>> data = {
 			{15, "a"},
@@ -302,6 +330,7 @@ TEST_CASE("SEARCH_ID Function") {
 		GatorBST bst;
 		REQUIRE(bst.SearchID(9) == std::nullopt);
 	};
+
 
 	SECTION("Correctly finds the associated name with an ID") {
 		vector<pair<int, string>> data = {
@@ -418,6 +447,24 @@ TEST_CASE("REMOVE FUNCTION") {
 
 	};
 
+	SECTION("Remove Correctly Removes a node with two sucessors") {
+
+	vector<pair<int, string>> data = {
+		{15, "a"},
+		{8,  "b"},
+		{24, "c"},
+		{6,  "d"},
+		{10, "e"},
+		{20, "f"},
+		{32, "g"},
+		{4,  "h"}
+	};
+	GatorBST bst = buildTree(data);
+		REQUIRE(bst.Remove(8) == true);
+		REQUIRE(Traversal({4,6,10,15,20,24,32}, bst) == true);
+
+	};
+
 	SECTION("Remove for Empty Tree Does Nothing") {
 		GatorBST bst;
 		REQUIRE(bst.Remove(8) == false);
@@ -426,8 +473,10 @@ TEST_CASE("REMOVE FUNCTION") {
 	SECTION("Remove for Node with Only 1 Sucessor Nodes") {
 		vector<pair<int, string>> data = {{1,"apple"}, {2,"beta"}};
 		GatorBST bst = buildTree(data);
+		int i = 0;
 		for (const auto& [elm, chara] : data) {
 			REQUIRE(bst.Remove(elm) == true);
+			if (i == 0) {REQUIRE(Traversal({2},bst) == true);}
 		}
 		REQUIRE(Traversal({},bst) == true);
 	};
