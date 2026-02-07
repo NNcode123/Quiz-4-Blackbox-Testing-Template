@@ -399,6 +399,25 @@ TEST_CASE("SEARCH_ID Function") {
 		REQUIRE(bst.SearchID(9) == std::nullopt);
 	};
 
+	SECTION("Small Tree") {
+		GatorBST bst;
+		bst.Insert(90,"Whoop");
+		REQUIRE(bst.SearchID(90) == "Whoop");
+		REQUIRE(bst.SearchID(89) == std::nullopt);
+	};
+
+	SECTION("Small Tree") {
+		GatorBST bst;
+		bst.Insert(90,"Whoop");
+		bst.Insert(91,"dwe");
+		bst.Insert(-150,"stup");
+		REQUIRE(bst.SearchID(90) == "Whoop");
+		REQUIRE(bst.SearchID(91) == "dwe");
+		REQUIRE(bst.SearchID(-150) == "stup");
+		REQUIRE(bst.SearchID(89) == std::nullopt);
+	};
+
+
 
 	SECTION("Correctly finds the associated name with an ID") {
 		vector<pair<int, string>> data = {
