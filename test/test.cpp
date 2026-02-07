@@ -247,6 +247,7 @@ TEST_CASE("Insertion funtion") {
 		};
 		GatorBST bst = buildTree(data);
 		REQUIRE(bst.Insert(67, "BrainRot") == true);
+
 	};
 
 	SECTION("Insertion Works for Full Trees") {
@@ -412,6 +413,7 @@ TEST_CASE("REMOVE FUNCTION") {
 		for (const auto& [elm, chara] : data) {
 			REQUIRE(bst.Remove(elm) == true);
 		}
+		REQUIRE(Traversal({}, bst) == true);
 
 
 	};
@@ -427,6 +429,7 @@ TEST_CASE("REMOVE FUNCTION") {
 		for (const auto& [elm, chara] : data) {
 			REQUIRE(bst.Remove(elm) == true);
 		}
+		REQUIRE(Traversal({},bst) == true);
 	};
 	SECTION("Remove Returns false when the target UFID is not in list") {
 		vector<pair<int, string>> data = {
@@ -447,6 +450,8 @@ TEST_CASE("REMOVE FUNCTION") {
 		};
 		GatorBST bst = buildTree(data);
 		REQUIRE(bst.Remove(36) == false);
+		REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,32,35},bst) == true);
+
 
 	};
 }
