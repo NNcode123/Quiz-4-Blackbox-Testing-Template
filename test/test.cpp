@@ -300,6 +300,10 @@ TEST_CASE("Insertion funtion") {
 		GatorBST bst = buildTree(data);
 		REQUIRE(bst.Insert(67, "BrainRot") == true);
 		REQUIRE(Traversal({4,6,8,10,15,20,24,32,67},bst) == true);
+		REQUIRE(bst.Insert(25,"toot") == true);
+		REQUIRE(Traversal({4,6,8,10,15,20,24,25,32,67},bst) == true);
+		REQUIRE(bst.Insert(17,"toot") == true);
+		REQUIRE(Traversal({4,6,8,10,15,17,20,24,25,32,67},bst) == true);
 
 	};
 
@@ -552,13 +556,19 @@ TEST_CASE("SEARCH_NAME Function") {
 		GatorBST bst = buildTree(data);
 		vector<int> vec{4,6,8,20};
 		REQUIRE(bst.SearchName("Remus") == vec);
+		for (const auto& [elm, val]: data) {
+			if (val != "Remus") {
+				std::vector<int> vecs = {elm};
+				REQUIRE(bst.SearchName(val) == vecs);
+			}
+		}
 	};
 
 
 }
 
 TEST_CASE("REMOVE FUNCTION") {
-	SECTION("REMOVE for Node with 2 and 1 Sucessor Nodes") {
+	SECTION("REMOVE can clear out the list") {
 		vector<pair<int, string>> data = {
 			{15, "a"},
 			{8,  "b"},
