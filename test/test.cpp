@@ -156,6 +156,28 @@ TEST_CASE("Height function") {
 		REQUIRE(bst.Height() == 3);
 
 	};
+
+	SECTION("Irregular Trees") {
+		vector<pair<int,string>> data = {
+			{5, "a"},
+			{200,  "b"},
+			{24, "c"},
+			{3,  "d"},
+			{2, "e"},
+			{1, "f"},
+			{45, "g"},
+			{50,  "h"},
+			{70,  "i"},
+			{9,  "j"},
+			{11, "k"},
+			{10, "l"},
+			{93, "m"},
+			{35, "n"},
+			{3,"o"},
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(bst.Height() == 5);
+	};
 }
 
 TEST_CASE("Insertion funtion") {
