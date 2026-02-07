@@ -42,6 +42,33 @@ TEST_CASE("Height function") {
 		GatorBST bst;
 		REQUIRE(bst.Height() == 0);
 	};
+	SECTION("Small Tree with 1 layer") {
+		GatorBST bst;
+		bst.Insert(9,"lefty");
+		REQUIRE(bst.Height() == 1);
+	};
+	SECTION("Small Tree with 3 NOdes") {
+		GatorBST bst;
+		bst.Insert(9,"lefty");
+		bst.Insert(10, "righty");
+		bst.Insert(20, "empty");
+		REQUIRE(bst.Height() == 2);
+	};
+	SECTION("Small Tree with 3 NOdes") {
+		GatorBST bst;
+		bst.Insert(3,"lefty");
+		bst.Insert(5, "righty");
+		bst.Insert(2, "empty");
+		REQUIRE(bst.Height() == 2);
+	};
+	SECTION("Small Tree with 3 NOdes") {
+		GatorBST bst;
+		bst.Insert(7,"lefty");
+		bst.Insert(5, "righty");
+		bst.Insert(2, "empty");
+		REQUIRE(bst.Height() == 2);
+	};
+
 	SECTION("Perfect Trees") {
 		vector<pair<int, string>> data = {
 			{15, "a"},
@@ -225,6 +252,7 @@ TEST_CASE("Insertion funtion") {
 		};
 		GatorBST bst = buildTree(data);
 		REQUIRE(bst.Insert(67, "BrainRot") == true);
+		REQUIRE(Traversal({4,6,8,10,15,20,24,32,67},bst) == true);
 
 	};
 
@@ -247,6 +275,7 @@ TEST_CASE("Insertion funtion") {
 		};
 		GatorBST bst = buildTree(data);
 		REQUIRE(bst.Insert(67, "BrainRot") == true);
+		REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,32,35,67},bst) == true);
 
 	};
 
