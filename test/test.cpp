@@ -448,7 +448,7 @@ TEST_CASE("SEARCH_ID Function") {
 			{21, "m"},
 			{35, "n"},
 			{3,"o"},
-			{5,"p"}
+
 		};
 		GatorBST bst = buildTree(data);
 		for (const auto& [id, name]: data) {
@@ -555,6 +555,11 @@ TEST_CASE("SEARCH_NAME Function") {
 		};
 		GatorBST bst = buildTree(data);
 		vector<int> vec{4,6,8,20};
+		vector<int> empty_vec{};
+		vector<string> names {"deddd","mod","newton","whoop"};
+		for (const auto& nameQ: names) {
+			REQUIRE(bst.SearchName(nameQ) == empty_vec);
+		}
 		REQUIRE(bst.SearchName("Remus") == vec);
 		for (const auto& [elm, val]: data) {
 			if (val != "Remus") {
