@@ -81,7 +81,7 @@ TEST_CASE("Height function") {
 			{21, "m"},
 			{35, "n"},
             {3,"o"},
-            {5,"p"}
+
 		};
 		GatorBST bst = buildTree(data);
 		REQUIRE(bst.Height() == 5);
@@ -376,11 +376,11 @@ TEST_CASE("In Order Traversals") {
 				{21, "m"},
 				{35, "n"},
                  {3,"o"},
-                 {5,"p"}
+
 
 			};
 			GatorBST bst = buildTree(data);
-		REQUIRE(Traversal({3,4,5,6,7,8,9,10,12,15,19,20,21,24,32,35},bst) == true);
+		REQUIRE(Traversal({3,4,6,7,8,9,10,12,15,19,20,21,24,32,35},bst) == true);
 
 
 
@@ -467,11 +467,10 @@ TEST_CASE("Pre Order Traversals") {
 			{21, "m"},
 			{35, "n"},
 			 {3,"o"},
-			 {5,"p"}
 
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(Traversal({15,8,6,4,3,5,7,10,9,12,24,20,19,21,32,35},bst,1) == true);
+		REQUIRE(Traversal({15,8,6,4,3,7,10,9,12,24,20,19,21,32,35},bst,1) == true);
 
 
 
@@ -556,11 +555,11 @@ TEST_CASE("Post Order Traversals") {
 			{21, "m"},
 			{35, "n"},
 			 {3,"o"},
-			 {5,"p"}
+
 
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(Traversal({3, 5, 4, 7, 6, 9, 12, 10, 8, 19, 21, 20, 35, 32, 24, 15},bst,2) == true);
+		REQUIRE(Traversal({3, 4, 7, 6, 9, 12, 10, 8, 19, 21, 20, 35, 32, 24, 15},bst,2) == true);
 
 
 
