@@ -121,7 +121,7 @@ TEST_CASE("Height function") {
 
 TEST_CASE("Insertion funtion") {
 
-	SECTION("Duplicate Check") {
+	SECTION("Duplicate Check for Degenerate Trees") {
 
 		vector<pair<int,string>> data = {
 				{15, "a"},
@@ -131,14 +131,88 @@ TEST_CASE("Insertion funtion") {
 				{32, "e"}
 		};
 		GatorBST bst = buildTree(data);
-		REQUIRE(bst.Insert(8,"YOOOO!") == false);
+		for (const auto& [elm, val]: data) {
+			REQUIRE(bst.Insert(elm,"YOOOO!") == false);
+		}
+
 	};
+
+	SECTION("Duplicate Check for Perfect Trees") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"}
+		};
+		GatorBST bst = buildTree(data);
+		for (const auto& [elm, val]: data) {
+			REQUIRE(bst.Insert(elm,"YOOOO!") == false);
+		}
+	};
+
+	SECTION("Duplicate Check  for Full Trees") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"},
+			{3,"o"},
+
+		};
+		GatorBST bst = buildTree(data);
+		for (const auto& [elm, val]: data) {
+			REQUIRE(bst.Insert(elm,"YOOOO!") == false);
+		}
+
+
+	};
+
+	SECTION("Duplicate Check for Complete Trees") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"}
+		};
+		GatorBST bst = buildTree(data);
+		for (const auto& [elm, val]: data) {
+			REQUIRE(bst.Insert(elm,"YOOOO!") == false);
+		}
+
+	};
+
+
+
 	SECTION("Insertion works for Empty Tree Bst") {
 		GatorBST bst;
 		REQUIRE(bst.Insert(89, "That guy!") == true);
 	};
 
-	SECTION("If Insertion is valid, it inserts data into the correct place") {
+	SECTION("If Insertion is valid, it inserts data into the correct place for degenerate trees") {
 		vector<pair<int, string>> data = {
 			{15, "a"},
 			{8,  "b"},
@@ -153,6 +227,70 @@ TEST_CASE("Insertion funtion") {
 		REQUIRE(bst.Insert(67, "BrainRot") == true);
 
 	};
+
+	SECTION("If Insetion is valid, it inserts data into correct place for Perfect Trees") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(bst.Insert(67, "BrainRot") == true);
+	};
+
+	SECTION("Insertion Works for Full Trees") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"},
+			{7,  "i"},
+			{9,  "j"},
+			{12, "k"},
+			{19, "l"},
+			{21, "m"},
+			{35, "n"},
+			{3,"o"},
+
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(bst.Insert(67, "BrainRot") == true);
+
+
+
+	};
+
+	SECTION("Insertion Works for Complete Trees") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(bst.Insert(67, "BrainRot") == true);
+
+	};
+
 
 
 
