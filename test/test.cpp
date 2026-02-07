@@ -80,6 +80,14 @@ TEST_CASE("Height function") {
 		bst.Insert(2, "empty");
 		REQUIRE(bst.Height() == 3);
 	};
+	SECTION("Small Tree with 4 NOdes") {
+		GatorBST bst;
+		bst.Insert(4,"d");
+		bst.Insert(3,"e");
+		bst.Insert(2,"f");
+		bst.Insert(1,"u");
+		REQUIRE(bst.Height() == 4);
+	};
 
 	SECTION("Perfect Trees") {
 		vector<pair<int, string>> data = {
@@ -466,6 +474,26 @@ TEST_CASE("SEARCH_ID Function") {
 
 	};
 
+	SECTION("Works for Perfect Trees ") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"}
+		};
+		GatorBST bst = buildTree(data);
+
+		for (const auto& [elm, name]: data) {
+			REQUIRE(bst.SearchID(elm) == name);
+		};
+
+
+	};
+
 }
 
 TEST_CASE("SEARCH_NAME Function") {
@@ -487,7 +515,7 @@ TEST_CASE("SEARCH_NAME Function") {
 		vector<int> vec = {6,8,15,24,32};
 		REQUIRE(bst.SearchName("a") == vec);
 	}
-	SECTION("Empty Vector Returned for Tree that doesn't contain the Name") {
+	SECTION("Case When List has all unique names") {
 		vector<pair<int, string>> data = {
 			{15, "a"},
 			{8,  "b"},
