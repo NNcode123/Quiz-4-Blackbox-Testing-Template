@@ -47,6 +47,18 @@ TEST_CASE("Height function") {
 		bst.Insert(9,"lefty");
 		REQUIRE(bst.Height() == 1);
 	};
+	SECTION("Small Tree with 2 Nodes") {
+		GatorBST bst;
+		bst.Insert(9,"lefty");
+		bst.Insert(2,"righty");
+		REQUIRE(bst.Height() == 2);
+	};
+	SECTION("Small Tree with 3 Nodes") {
+		GatorBST bst;
+		bst.Insert(5,"lefty");
+		bst.Insert(8,"righty");
+		REQUIRE(bst.Height() == 2);
+	}
 	SECTION("Small Tree with 3 NOdes") {
 		GatorBST bst;
 		bst.Insert(9,"lefty");
@@ -417,6 +429,18 @@ TEST_CASE("SEARCH_NAME Function") {
 		vector<int> vec{};
 		REQUIRE(bst.SearchName("Fraud") == vec);
 	};
+	SECTION("Entire List has duplicate names") {
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "a"},
+			{24, "a"},
+			{6,  "a"},
+			{32, "a"}
+		};
+		GatorBST bst = buildTree(data);
+		vector<int> vec = {6,8,15,24,32};
+		REQUIRE(bst.SearchName("a") == vec);
+	}
 	SECTION("Empty Vector Returned for Tree that doesn't contain the Name") {
 		vector<pair<int, string>> data = {
 			{15, "a"},
