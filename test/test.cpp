@@ -71,14 +71,14 @@ TEST_CASE("Height function") {
 		bst.Insert(3,"lefty");
 		bst.Insert(5, "righty");
 		bst.Insert(2, "lefty");
-		REQUIRE(bst.Height() == 3);
+		REQUIRE(bst.Height() == 2);
 	};
 	SECTION("Small Tree with 3 NOdes") {
 		GatorBST bst;
 		bst.Insert(7,"lefty");
 		bst.Insert(5, "righty");
 		bst.Insert(2, "empty");
-		REQUIRE(bst.Height() == 2);
+		REQUIRE(bst.Height() == 3);
 	};
 
 	SECTION("Perfect Trees") {
@@ -839,7 +839,7 @@ TEST_CASE("Post Order Traversals") {
 		bst.Insert(3,"woop");
 		bst.Insert(9, "woop");
 		bst.Insert(1,"damn");
-		REQUIRE(Traversal({1,9,3},bst,1) == true);
+		REQUIRE(Traversal({1,9,3},bst,2) == true);
 	};
 
 	SECTION("PostOrder traversal works for a Perfect List") {
