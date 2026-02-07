@@ -596,6 +596,48 @@ TEST_CASE("REMOVE FUNCTION") {
 
 	};
 
+	SECTION("Remove Correctly Removes a node with one sucessors") {
+
+		vector<pair<int, string>> data = {
+			{15, "a"},
+			{8,  "b"},
+			{24, "c"},
+			{6,  "d"},
+			{10, "e"},
+			{20, "f"},
+			{32, "g"},
+			{4,  "h"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(bst.Remove(6) == true);
+		REQUIRE(Traversal({4,8,10,15,20,24,32}, bst) == true);
+
+	};
+
+	SECTION("Remove Correctly Removes a node wih no sucessors") {
+
+		vector<pair<int,string>> data= {
+			{15, "a"},
+		   {8,  "b"},
+		   {24, "c"},
+		   {6,  "d"},
+		   {10, "e"},
+		   {20, "f"},
+		   {32, "g"},
+		   {4,  "h"},
+		   {7,  "i"},
+		   {9,  "j"},
+		   {12, "k"},
+		   {19, "l"},
+		   {21, "m"},
+		   {35, "n"}
+		};
+		GatorBST bst = buildTree(data);
+		REQUIRE(bst.Remove(35) == true);
+		REQUIRE(Traversal({4,6,7,8,9,10,12,15,19,20,21,24,32},bst) == true);
+
+	};
+
 	SECTION("Remove for Empty Tree Does Nothing") {
 		GatorBST bst;
 		REQUIRE(bst.Remove(8) == false);
